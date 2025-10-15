@@ -20,8 +20,17 @@ class ChauffeurModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getDBChauffeurById ($idChauffeur) {
-        return "Données de la BD du chauffeur : " . $idChauffeur;
+    public function getDBChauffeurById ($idChauffeur)
+    {
+        $req = "
+            SELECT * FROM Chauffeur
+            WHERE chauffeur_id = :idChauffeur
+        ";
+        $stmt = $this->pdo->prepare($req);
+        $stmt->bindValue(":idChauffeur", $idChauffeur, PDO::PARAM_INT);
+        $stmt->execute();
+        $chauffeur = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $chauffeur;
     }
 }
 

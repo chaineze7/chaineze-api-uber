@@ -13,7 +13,7 @@ $trajetController = new TrajetController();
 // Vérifie si le paramètre "page" est vide ou non présent dans l'URL
 if (empty($_GET["page"])) {
     // Si le paramètre est vide, on affiche un message d'erreur
-    echo "Cette page est introuvable.";
+    echo "Cette page est introuvable. ";
 } else {
     // Sinon, on récupère la valeur du paramètre "page"
     // Par exemple, si l’URL est : index.php?page=chauffeurs/3
@@ -32,7 +32,7 @@ if (empty($_GET["page"])) {
             // Si un second segment est présent (ex: un ID), on l’utilise
             if (isset($url[1])) {
                 // Exemple : /chauffeurs/3 → affiche les infos du chauffeur 3
-                echo "Afficher les informations du chauffeur : ". $url[1];
+                echo  $chauffeurController->getChauffeurById($url[1]);
             } else {
                 // Sinon, on affiche tous les chauffeurs
                 echo  $chauffeurController->getAllChauffeurs();
@@ -40,7 +40,7 @@ if (empty($_GET["page"])) {
             break;
         case "clients":
             if (isset($url[1])) {
-                echo "Afficher les informations du client : ". $url[1];
+                echo  $clientController->getClientById($url[1]);
             } else {
                 echo $clientController->getAllClients();
             }
@@ -48,7 +48,7 @@ if (empty($_GET["page"])) {
 
         case "voitures":
             if (isset($url[1])) {
-                echo "Afficher les informations de la voiture : ". $url[1];
+                echo $voitureController->getVoitureById($url[1]);
             } else {
                 echo $voitureController->getAllVoitures();
             }
@@ -56,7 +56,7 @@ if (empty($_GET["page"])) {
 
         case "trajets":
             if (isset($url[1])) {
-                echo "Afficher les informations du trajet : ". $url[1];
+                echo  $trajetController->getTrajetById($url[1]);
             } else {
                 echo $trajetController->getAllTrajets();
             }
@@ -67,4 +67,3 @@ if (empty($_GET["page"])) {
             echo "La page n'existe pas";
     }
 }
-

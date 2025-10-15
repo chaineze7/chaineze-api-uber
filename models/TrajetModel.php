@@ -19,6 +19,19 @@ class TrajetModel
         $stmt = $this->pdo->query("SELECT * FROM Trajet");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getDBTrajetById ($idTrajet)
+    {
+        $req = "
+            SELECT * FROM Trajet
+            WHERE chauffeur_id = :idTrajet
+        ";
+        $stmt = $this->pdo->prepare($req);
+        $stmt->bindValue(":idTrajet", $idTrajet, PDO::PARAM_INT);
+        $stmt->execute();
+        $trajet = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $trajet;
+    }
 }
 //$TrajetModel = new TrajetModel();
 //print_r($TrajetModel->getDBAllTrajets());

@@ -19,6 +19,19 @@ class ClientModel
         $stmt = $this->pdo->query("SELECT * FROM Client");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getDBClientById ($idClient)
+    {
+        $req = "
+            SELECT * FROM Client
+            WHERE client_id = :idClient
+        ";
+        $stmt = $this->pdo->prepare($req);
+        $stmt->bindValue(":idClient", $idClient, PDO::PARAM_INT);
+        $stmt->execute();
+        $client = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $client;
+    }
 }
 // $ClientModel = new ClientModel();
 // print_r($ClientModel->getDBAllClients());
