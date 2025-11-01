@@ -54,6 +54,13 @@ if (empty($_GET["page"])) {
                     http_response_code(400);
                     echo json_encode(["message"=> "ID du chauffeur manquant dans l'URL"]);
                 }
+                case "DELETE":
+                    if (isset($url[1])) {
+                    $chauffeurController->deleteChauffeur($url[1]);
+                } else {
+                    http_response_code(400);
+                    echo json_encode(["message"=> "ID du chauffeur manquant dans l'URL"]);
+                }
             }
 
             break;
