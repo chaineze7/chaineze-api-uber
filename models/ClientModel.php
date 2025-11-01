@@ -70,6 +70,22 @@ class ClientModel
        return $stmt->rowCount() > 0;
         
     }
+
+    public function deleteDBClient($id) {
+        $req ="DELETE FROM client
+               WHERE client_id = :id";
+            
+        $stmt = $this->pdo->prepare($req);
+
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+
+        $stmt->execute();
+
+
+       // Vérifie si une ligne a été modifiée
+       return $stmt->rowCount() > 0;
+        
+    }
 }
 // $ClientModel = new ClientModel();
 // print_r($ClientModel->getDBAllClients());

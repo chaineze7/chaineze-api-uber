@@ -40,6 +40,16 @@ class ClientController
 
     
     }
+
+    public function deleteClient($id) {
+      $success=$this->model->deleteDBClient($id);
+       if ($success) {
+            http_response_code(204);
+        } else {
+            http_response_code(404);
+            echo json_encode(["messge" => "Client introuvable"]);
+        }  
+    }
 }
 //$clientController = new ClientController();
 //$clientController->getAllClients();
