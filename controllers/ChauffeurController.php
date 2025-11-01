@@ -29,6 +29,18 @@ class ChauffeurController
         http_response_code(201);
         echo json_encode($ligneChauffeur);
     }
+
+    public function updateChauffeur($id,$data) {
+        $success=$this->model->updateDBChauffeur($id, $data);
+        if ($success) {
+            http_response_code(204);
+        } else {
+            http_response_code(404);
+            echo json_encode(["messge" => "Chauffeur non trouvé ou non modifié"]);
+        }
+
+    
+    }
 }
 //$chauffeurController = new ChauffeurController();
 //$chauffeurController->getAllChauffeurs();
